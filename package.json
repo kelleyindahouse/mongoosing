@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "express": "^4.17.2",
+    "mongoose": "^6.1.6"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "mongoosing",
+  "description": "mongoosing",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kelleyindahouse/mongoosing.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kelleyindahouse/mongoosing/issues"
+  },
+  "homepage": "https://github.com/kelleyindahouse/mongoosing#readme"
+}
