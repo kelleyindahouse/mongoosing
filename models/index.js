@@ -1,11 +1,7 @@
 module.exports = {
-  Dog: require('./Dog.js')
-}
-
-module.exports = {
-  Cat: require('./Cat.js')
-}
-
-module.exports = {
+  Dog: require('./Dog.js'),
+  Owner: require('./Owner.js'),
+  Cat: require('./Cat.js'),
   Bird: require('./Bird.js')
 }
+

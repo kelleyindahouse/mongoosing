@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose')
 
-const DogSchema = new Schema({
+const Dog = new Schema({
   name: {
     type: String,
     required: true 
@@ -16,7 +16,12 @@ const DogSchema = new Schema({
   living: {
     type: Boolean,
     required: true
+  },
+  owner: {
+    type: Schema.Types.ObjectId,
+    ref: 'owner',
+    required: true
   }
 })
 
-module.exports = model('dog', DogSchema)
+module.exports = model('dog', Dog)

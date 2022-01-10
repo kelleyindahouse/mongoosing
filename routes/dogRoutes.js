@@ -1,21 +1,58 @@
 const router = require('express').Router()
-const { Dog } = require('../models')
+const { Dog, Owner } = require('../models')
 
 // GET all dogs
 router.get('/dogs', async function (req, res) {
-  const dogs = await Dog.find({})
-  res.join(dogs)
+  const dogs = await Dog.find({}).populate({
+    path: 'owner',
+    populate: {
+      path: 'dogs',
+      model: 'dog'
+    }
+  }).populate({
+    path: 'owner',
+    populate: {
+      path: 'cats',
+      model: 'cat',
+    }
+  }).populate({
+    path: 'owner',
+    populate: {
+      path: 'birds',
+      model: 'bird',
+    }
+  })
+  res.json(dogs)
 })
 
 // GET one dog by id
 router.get('/dogs/:id', async function (req, res) {
-  const dog = await Dog.findById(req.params.id)
+  const dog = await Dog.findById(req.params.id).populate({
+    path: 'owner',
+    populate: {
+      path: 'dogs',
+      model: 'dog'
+    }
+  }).populate({
+    path: 'owner',
+    populate: {
+      path: 'cats',
+      model: 'cat',
+    }
+  }).populate({
+    path: 'owner',
+    populate: {
+      path: 'birds',
+      model: 'bird',
+    }
+  })
   res.json(dog)
 })
 
 // POST one dog
 router.post('/dogs', async function (req, res) {
   const dog = await Dog.create(req.body)
+  await Owner.findByIdAndUpdate(req.body.user, { $push: { dogs: dog._id } })
   res.json(dog)
 })
 
